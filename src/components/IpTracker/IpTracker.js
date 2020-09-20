@@ -10,7 +10,7 @@ const IpTracker = props => {
         <div className="IpTracker">
             <h1 className="IpTracker__title">IP Address Tracker</h1>
             <div className="IpTracker__functionality">
-                <IpTrackerInput ip={props.ip} setIp={props.setIp} trackIp={props.trackIp}/>
+                <IpTrackerInput ip={props.ip} setIp={props.setIp} trackIp={props.trackIp} error={props.error} setError={props.setError}/>
                 <IpTrackerResults ip={props.ip} ipDetails={props.ipDetails}/>
             </div>
         </div>

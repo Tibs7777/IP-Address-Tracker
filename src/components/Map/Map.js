@@ -21,11 +21,9 @@ const Map = props => {
         accessToken: 'pk.eyJ1IjoidGlicyIsImEiOiJja2Y5dTFqdTEwaDgxMnBsZDBrbjlubHZ2In0.qJN_c8RoKyxcuwymQTw-PA'
         }).addTo(mymap);
         setMap(mymap)
-        console.log('map render')
     }, [L])
 
     useEffect(() => {
-        console.log('setting map')
         if(props.lat){
             // const mymap = L.map('mapid').setView([51.505, -0.09], 13);
             map.setView([props.lat, props.lng], 13);

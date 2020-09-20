@@ -4,7 +4,8 @@
 #mapid {
     height: calc(100vh - 30rem);
     z-index: 0;
-    background: white;
+    background: #2c2c2c;
+
 
     @include breakpoint($bp-medium) {
         height: calc(100vh - 28rem);
