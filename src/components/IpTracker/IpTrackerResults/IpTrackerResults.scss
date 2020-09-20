@@ -1,0 +1,115 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.IpTrackerResults {
+    background: #FFF;
+    width: 90%;
+    max-width: 111rem;
+    border-radius: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(21.3rem, 1fr));
+    row-gap: 2.4rem;
+
+    padding: 2.4rem;
+    margin: 0 auto;
+
+    @include breakpoint($bp-medium) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include breakpoint($bp-large) {
+        padding: 3.6rem 3.2rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    &__divider{
+        display: none;
+
+        @include breakpoint($bp-large) {
+            // height: 40px;
+            width: 1px;
+            background: #000;
+            opacity: 15%;
+            top: 0;
+            right: 0;
+            display: block;
+            z-index: 100;
+            margin: 0 1rem;
+        }
+    }
+}
+
+.IpTrackerResult {
+    text-align: center;
+    position: relative;
+
+
+    @include breakpoint($bp-large) {
+        text-align: left;
+        width: 21.3rem;
+    }
+
+    // @include breakpoint($bp-large) {
+    //         &:not(:last-child) {
+
+    //         &::after {
+    //             content: "";
+    //             height: 100%;
+    //             width: 5px;
+    //             background: green;
+    //             top: 0;
+    //             right: 0;
+    //             display: block;
+    //             position: absolute;
+    //             z-index: 100;
+    //         }
+    //     }
+    // }
+
+
+    &__title {
+        display: block;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 1.46px;
+        color: #2c2c2c;
+        opacity: 50%;
+        text-transform: uppercase;
+        margin-bottom: .7rem;
+
+        @include breakpoint($bp-medium) {
+        font-size: 1.2rem;
+        }
+    
+
+        @include breakpoint($bp-larger) {
+            font-size: 1.2rem;
+            letter-spacing: 1.76px;
+        }
+
+    }
+
+    &__details {
+        font-size: 2rem;
+        letter-spacing: -0.18px;
+        line-height: 2.4rem;
+        font-weight: 500;
+        word-wrap: break-word;
+        hyphens: auto;
+
+        @include breakpoint($bp-medium) {
+            font-size: 2.4rem;
+        }
+    
+
+
+        @include breakpoint($bp-larger) {
+            font-size: 2.6rem;
+            line-height: 3rem;
+            letter-spacing: -0.23px;
+        }
+    }
+
+}

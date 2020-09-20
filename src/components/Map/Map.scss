@@ -1,0 +1,11 @@
+@import '../../scss/mixins';
+@import '../../scss/variables';
+
+#mapid {
+    height: 800px;
+    z-index: 0;
+
+    @include breakpoint($bp-medium) {
+
+    }
+}
