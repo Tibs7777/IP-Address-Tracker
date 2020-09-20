@@ -2,10 +2,25 @@
 @import '../../scss/variables';
 
 #mapid {
-    height: 800px;
+    height: calc(100vh - 30rem);
     z-index: 0;
+    background: white;
 
     @include breakpoint($bp-medium) {
+        height: calc(100vh - 28rem);
+    }
+}
 
+.Map-container {
+    position: relative;
+
+    &__loading{
+        width: 100%;
+        height: 100%;
+        background: #2c2c2c;
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 }

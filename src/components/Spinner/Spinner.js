@@ -5,7 +5,9 @@ const Spinner = props => {
 
 
     return(
-        <div className="loader"></div>
+        <div className="loader__container">
+            <div className="loader"></div>
+        </div>
     )
 }
 

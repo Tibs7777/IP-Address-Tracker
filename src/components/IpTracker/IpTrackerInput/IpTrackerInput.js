@@ -4,7 +4,8 @@ import './IpTrackerInput.scss'
 const IpTrackerInput = props => {
 
     const onChangeHandler = (e) => {
-        props.setIp(e.target.value.trim())
+        let value = e.target.value.replace(/\s+/g, '');
+        props.setIp(value.toLowerCase())
     }
 
     const submitHandler = (e, ip) => {

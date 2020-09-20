@@ -10,6 +10,7 @@
     background-position: center;
     padding-top: 3.2rem;
     position: relative;
+    z-index: 1000000;
 
     @include breakpoint($bp-medium) {
         height: 28rem;

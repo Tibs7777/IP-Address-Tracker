@@ -37,20 +37,20 @@ const Map = props => {
     }, [props.lat, props.lng, L, map])
 
 
-
-
-
-
-    // let mapRender = <div id="mapid"></div>
-    // if(props.loading) {
-    //     mapRender = <Spinner />
-    // }
+    let loader = null
+    if(props.loading) {
+        loader = <React.Fragment>
+                    <div className="Map-container__loading"></div>
+                    <Spinner />
+                 </React.Fragment>
+    }
 
 
     return(
-        <React.Fragment>
+        <div className="Map-container">
             <div id="mapid"></div>
-        </React.Fragment>
+            {loader}
+        </div>
     )
 }
 

@@ -22,6 +22,7 @@ const Tracker = props => {
     const [ip, setIp] = useState('')
     const [ipDetails, setIpDetails] = useState(initIpDetailsState)
     const [loading, setLoading] = useState(false)
+    const [adBlockMsg, setAdBlockMsg] = useState(false)
 
 
     const trackIp = (ip) => {
@@ -54,9 +55,13 @@ const Tracker = props => {
             })
             setIp('')
             setLoading(false)
+            setAdBlockMsg(false)
         })
         .catch(err => {
             console.log(err)
+            if(err = "TypeError: Failed to fetch") {
+                setAdBlockMsg(true)
+            }
             setLoading(false)
         })
     }
@@ -66,13 +71,21 @@ const Tracker = props => {
     }, [])
 
 
+    let ad = null
+
+    if(adBlockMsg) {
+        ad = <h2 style={{position: "absolute", left: "50%", top: "50%", zIndex: '100', transform: "translate(-50%, -50%)"}}>Not loading? Try disabling adblock</h2>
+    }
+
 
     return (
         <React.Fragment>
             <Banner>
                 <IpTracker ip={ip} setIp={setIp} trackIp={trackIp} ipDetails={ipDetails}/>
             </Banner>
-            <Map lat={ipDetails.location.lat} lng={ipDetails.location.lng} loading={loading}/>
+            {ad}
+            {/* <Spinner /> */}
+            <Map lat={ipDetails.location.lat} lng={ipDetails.location.lng} loading={loading}/>   
         </React.Fragment>
     )
 }
