@@ -32,7 +32,7 @@ const Tracker = props => {
         const regex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/
         let url;
         if (!ip) {
-            return
+            return setError("Search for any IP address or domain")
         } else if(ip === "me") {
             url = `https://geo.ipify.org/api/v1?apiKey=at_i1pa13Sci3DNjzhh52YFBSJ0lRuoh`
         } else if(ip.match(regex)) {
@@ -85,7 +85,7 @@ const Tracker = props => {
     }, [trackIp])
 
     const handleScroll = useCallback(() => {
-        if(window.scrollY > 50) {
+        if(window.scrollY > 100) {
             setShowScrollButton(true)
         } else {
             setShowScrollButton(false)
