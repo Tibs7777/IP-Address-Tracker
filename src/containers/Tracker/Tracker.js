@@ -29,13 +29,17 @@ const Tracker = props => {
 
     const trackIp = useCallback((ip) => {
         ///simple ip formatting check
-        const regex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/
+        const ipRegex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/
+        //removal of protocol and subdomain
+        const httpRegex = /^(?:https?:\/\/)?(?:www\.)?/i;
         let url;
         if (!ip) {
             return setError("Search for any IP address or domain")
-        } else if(ip === "me") {
+        }   
+        ip.replace(httpRegex, '')
+        if(ip === "me") {
             url = `https://geo.ipify.org/api/v1?apiKey=at_i1pa13Sci3DNjzhh52YFBSJ0lRuoh`
-        } else if(ip.match(regex)) {
+        } else if(ip.match(ipRegex)) {
             url = `https://geo.ipify.org/api/v1?apiKey=at_i1pa13Sci3DNjzhh52YFBSJ0lRuoh&ipAddress=${ip}`
         } else {
             url = `https://geo.ipify.org/api/v1?apiKey=at_i1pa13Sci3DNjzhh52YFBSJ0lRuoh&domain=${ip}`
@@ -66,8 +70,6 @@ const Tracker = props => {
         }
         })
         .catch(err => {
-            console.log(err.message)
-            console.dir(err)
             setLoading(false)
             if(err.message === "Failed to fetch") {
                 setAdBlockMsg(true)
