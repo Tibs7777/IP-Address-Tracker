@@ -85,7 +85,7 @@ const Tracker = props => {
     }, [trackIp])
 
     const handleScroll = useCallback(() => {
-        if(window.scrollY > 0) {
+        if(window.scrollY > 50) {
             setShowScrollButton(true)
         } else {
             setShowScrollButton(false)
