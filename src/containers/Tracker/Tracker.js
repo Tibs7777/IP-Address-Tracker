@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Banner from '../../components/Banner/Banner'
 import IpTracker from '../../components/IpTracker/IpTracker'
 import Map from '../../components/Map/Map'
+import ScrollResetButton from '../../components/ScrollResetButton/ScrollsResetButton'
 
 const Tracker = props => {
 
@@ -23,10 +24,10 @@ const Tracker = props => {
     const [loading, setLoading] = useState(false)
     const [adBlockMsg, setAdBlockMsg] = useState(false)
     const [error, setError] = useState(null)
+    const [showScrollButton, setShowScrollButton] = useState(false)
 
 
-    const trackIp = (ip) => {
-        if(loading) return
+    const trackIp = useCallback((ip) => {
         ///simple ip formatting check
         const regex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/
         let url;
@@ -77,11 +78,26 @@ const Tracker = props => {
                 }
             }
         )
-    }
+    }, [])
     
     useEffect(() => {
         trackIp("me")
+    }, [trackIp])
+
+    const handleScroll = useCallback(() => {
+        if(window.scrollY > 0) {
+            setShowScrollButton(true)
+        } else {
+            setShowScrollButton(false)
+        }
     }, [])
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll)
+        return(() => {
+            window.removeEventListener("scroll", handleScroll)
+        })
+    }, [handleScroll])
 
 
     let ad = null
@@ -97,7 +113,8 @@ const Tracker = props => {
                 <IpTracker ip={ip} setIp={setIp} trackIp={trackIp} ipDetails={ipDetails} error={error} setError={setError}/>
             </Banner>
             {ad}
-            <Map lat={ipDetails.location.lat} lng={ipDetails.location.lng} loading={loading}/>   
+            <Map lat={ipDetails.location.lat} lng={ipDetails.location.lng} loading={loading}/>
+            <ScrollResetButton show={showScrollButton}/> 
         </React.Fragment>
     )
 }
